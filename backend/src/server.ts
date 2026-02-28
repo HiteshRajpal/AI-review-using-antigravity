@@ -10,19 +10,21 @@ import authRoutes from './routes/auth';
 dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT || 5000;
 
 // Connect Database
 connectDB();
 
-// Init Middleware
-app.use(cors());
+// Middleware
+app.use(cors({
+    origin: process.env.CLIENT_URL || '*',
+    credentials: true
+}));
 app.use(express.json());
 
 // Define Routes
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/auth', authRoutes);
-
-const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

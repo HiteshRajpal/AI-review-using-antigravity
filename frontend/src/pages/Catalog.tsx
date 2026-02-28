@@ -19,7 +19,8 @@ const Catalog = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('/api/products');
+                const apiUrl = import.meta.env.VITE_API_URL || '';
+                const response = await fetch(`${apiUrl}/api/products`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch products');
                 }

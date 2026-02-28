@@ -62,7 +62,8 @@ const Checkout = () => {
         };
 
         try {
-            const response = await fetch('/api/orders', {
+            const apiUrl = import.meta.env.VITE_API_URL || '';
+            const response = await fetch(`${apiUrl}/api/orders`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
